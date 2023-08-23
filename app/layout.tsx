@@ -1,8 +1,15 @@
-import './globals.css'
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import type { Metadata } from 'next'
+import { Noto_Sans } from 'next/font/google'
+import { Footer, Header, Sidebar } from './components'
+import './globals.css'
+import styles from './layout.module.css'
+
+const noto_sans = Noto_Sans({ 
+  weight: ['300','400','500','700'],
+  style: ['normal'],
+  subsets: ['latin'], 
+  display: 'swap'}) 
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +22,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="ru">
+      <body className={noto_sans.className}>
+        <div className={styles.wrapper}>
+          <Header className={styles.header}/>
+          <Sidebar className={styles.sidebar}/>
+          <main className={styles.main}>{children}</main>
+          <Footer className={styles.footer}/>
+        </div>
+      </body>
     </html>
   )
 }
